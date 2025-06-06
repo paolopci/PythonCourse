@@ -1,0 +1,7 @@
+prova dati nel file
+lettura e scrittura
+lettura e scrittura di file
+lettura e scrittura di file in JavaScript
+// Esempio di lettura e scrittura di file in JavaScript 
+
+const fs = require('fs');

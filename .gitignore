@@ -1,0 +1,65 @@
+# Bytecode compilato
+__pycache__/
+*.py[cod]
+*$py.class
+
+# File di log
+*.log
+
+# Configurazioni di runtime
+*.pid
+
+# File di database locali
+*.sqlite3
+
+# File generati da test
+.coverage
+.tox/
+nosetests.xml
+test-results/
+
+# Ambienti virtuali
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Distribuzione / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# File di pyinstaller
+*.manifest
+*.spec
+
+# Profili e performance
+*.prof
+*.pstat
+*.dat
+
+# File Jupyter Notebook di checkpoint
+.ipynb_checkpoints
+
+# PyCharm / VSCode / altri IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# macOS e altri OS
+.DS_Store
+Thumbs.db
