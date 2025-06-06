@@ -19,13 +19,13 @@ while True:
         "Please enter a valid command (add, show, edit, complete, read, exit): "
     ).strip().lower()
 # ---------------------------------------------------------------------------------
-    if "add" in user_action:
+    if user_action.startswith("add"):
         todo = user_action[4:].strip()
         with open("dati/todos.txt", "a") as file:
             file.write(todo + "\n")
         print(f"Todo '{todo}' added successfully.")
 # ---------------------------------------------------------------------------------
-    elif user_action in ("show", "list", "display"):
+    elif user_action.startswith(("show", "list", "display")):
         os.system("cls" if os.name == "nt" else "clear")
         todos = load_todos()
         if not todos:
@@ -34,7 +34,7 @@ while True:
             for index, item in enumerate(todos, start=1):
                 print(f"{index}. {item.capitalize()}")
 # ---------------------------------------------------------------------------------
-    elif "read" in user_action:
+    elif user_action.startswith("read"):
         todos = load_todos()
         if todos:
             print("Todos loaded from file:")
@@ -43,7 +43,7 @@ while True:
         else:
             print("No todos found. Please add some first.")
 # ---------------------------------------------------------------------------------
-    elif "complete" in user_action:
+    elif user_action.startswith("complete"):
         with open("dati/todos.txt", "r") as file:
             todos = file.read().splitlines()
         if not todos:
@@ -67,8 +67,9 @@ while True:
                     print("Invalid index.")
             except ValueError:
                 print("Please enter a valid number.")
+                continue
 # ---------------------------------------------------------------------------------
-    elif 'edit' in user_action:
+    elif user_action.startswith("edit"):
         todos = load_todos()
         if not todos:
             print("No todos available to edit.")
@@ -86,5 +87,5 @@ while True:
             print("Invalid input. Please enter a valid number.")
         continue
 # ---------------------------------------------------------------------------------
-    elif user_action == "exit":
+    elif user_action.startswith("exit"):
         break
