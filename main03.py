@@ -1,33 +1,34 @@
 import os
 
 
-def load_todos():
+def load_todos(file_path):
     try:
-        with open("dati/todos.txt", "r") as file:
+        with open(file_path, "r") as file:
             return [line.strip() for line in file if line.strip()]
     except FileNotFoundError:
         return []
 
 
-def save_todos(todos):
-    with open("dati/todos.txt", "w") as file:
+def save_todos(file_path, todos):
+    with open(file_path, "w") as file:
         file.write("\n".join(todos) + "\n")
 
 
 while True:
+    file_path = "dati/todos.txt"
     user_action = input(
         "Please enter a valid command (add, show, edit, complete, read, exit): "
     ).strip().lower()
 # ---------------------------------------------------------------------------------
     if user_action.startswith("add"):
         todo = user_action[4:].strip()
-        with open("dati/todos.txt", "a") as file:
+        with open(file_path, "a") as file:
             file.write(todo + "\n")
         print(f"Todo '{todo}' added successfully.")
 # ---------------------------------------------------------------------------------
     elif user_action.startswith(("show", "list", "display")):
         os.system("cls" if os.name == "nt" else "clear")
-        todos = load_todos()
+        todos = load_todos(file_path)
         if not todos:
             print("La lista TODO è vuota.")
         else:
@@ -35,7 +36,7 @@ while True:
                 print(f"{index}. {item.capitalize()}")
 # ---------------------------------------------------------------------------------
     elif user_action.startswith("read"):
-        todos = load_todos()
+        todos = load_todos(file_path)
         if todos:
             print("Todos loaded from file:")
             for index, item in enumerate(todos, start=1):
@@ -44,7 +45,7 @@ while True:
             print("No todos found. Please add some first.")
 # ---------------------------------------------------------------------------------
     elif user_action.startswith("complete"):
-        todos = load_todos()
+        todos = load_todos(file_path)
         if not todos:
             print("No todos to complete.")
         else:
@@ -60,7 +61,7 @@ while True:
                     completed_todo = todos.pop(index-1)
                     print(
                         f"Todo '{completed_todo}' completed and removed.")
-                    save_todos(todos)
+                    save_todos(file_path, todos)
                 else:
                     print("Invalid index.")
             except ValueError:
@@ -68,7 +69,7 @@ while True:
                 continue
 # ---------------------------------------------------------------------------------
     elif user_action.startswith("edit"):
-        todos = load_todos()
+        todos = load_todos(file_path)
         if not todos:
             print("No todos available to edit.")
             continue
@@ -80,7 +81,7 @@ while True:
             if 1 <= index <= len(todos):
                 new_todo = input("Enter the new todo item: ").strip()
                 todos[index - 1] = new_todo
-                save_todos(todos)
+                save_todos(file_path, todos)
         except ValueError:
             print("Invalid input. Please enter a valid number.")
         continue
