@@ -44,8 +44,7 @@ while True:
             print("No todos found. Please add some first.")
 # ---------------------------------------------------------------------------------
     elif user_action.startswith("complete"):
-        with open("dati/todos.txt", "r") as file:
-            todos = file.read().splitlines()
+        todos = load_todos()
         if not todos:
             print("No todos to complete.")
         else:
@@ -61,8 +60,7 @@ while True:
                     completed_todo = todos.pop(index-1)
                     print(
                         f"Todo '{completed_todo}' completed and removed.")
-                    with open("dati/todos.txt", "w") as file:
-                        file.write("\n".join(todos) + "\n")
+                    save_todos(todos)
                 else:
                     print("Invalid index.")
             except ValueError:
