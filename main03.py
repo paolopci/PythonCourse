@@ -2,6 +2,7 @@ import os
 
 
 def load_todos(file_path):
+    """ Load todos from a file, returning a list of todos. """
     try:
         with open(file_path, "r") as file:
             return [line.strip() for line in file if line.strip()]
@@ -10,10 +11,12 @@ def load_todos(file_path):
 
 
 def save_todos(file_path, todos):
+    """ Save todos to a file. """
     with open(file_path, "w") as file:
         file.write("\n".join(todos) + "\n")
 
 
+# print(help(load_todos))
 while True:
     file_path = "dati/todos.txt"
     user_action = input(
