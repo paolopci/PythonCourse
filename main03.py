@@ -10,6 +10,13 @@ def load_todos(file_path):
         return []
 
 
+text = """ 
+aggiungo del testo su più righe
+Prova di testo su più righe 
+la formattazione viene rispettata senza bisogno di usare '\n'
+"""
+
+
 def save_todos(file_path, todos):
     """ Save todos to a file. """
     with open(file_path, "w") as file:
