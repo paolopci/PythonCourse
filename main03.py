@@ -1,7 +1,12 @@
 import os
 # from Modules.functions03 import load_todos, save_todos
 from modules import functions03
+from datetime import date
+import time
 
+
+now = time.strftime('%d %b %Y %H:%M:%S', time.localtime())
+print(now)
 
 # print(help(load_todos))
 while True:
