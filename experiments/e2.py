@@ -1,4 +1,7 @@
-user_prompt = "Enter your todo item: "
+import csv
 
-input_text = input(user_prompt)
-print(input_text.title())
+
+with open('../weather.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)  # Print each row of the CSV file
