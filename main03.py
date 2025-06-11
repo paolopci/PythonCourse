@@ -1,26 +1,5 @@
 import os
-
-
-def load_todos(file_path):
-    """ Load todos from a file, returning a list of todos. """
-    try:
-        with open(file_path, "r") as file:
-            return [line.strip() for line in file if line.strip()]
-    except FileNotFoundError:
-        return []
-
-
-text = """ 
-aggiungo del testo su più righe
-Prova di testo su più righe 
-la formattazione viene rispettata senza bisogno di usare '\n'
-"""
-
-
-def save_todos(file_path, todos):
-    """ Save todos to a file. """
-    with open(file_path, "w") as file:
-        file.write("\n".join(todos) + "\n")
+from Modules.functions03 import load_todos, save_todos
 
 
 # print(help(load_todos))
