@@ -6,7 +6,7 @@ import time
 
 
 now = time.strftime('%d %b %Y %H:%M:%S', time.localtime())
-print(now)
+print(f"Oggi è: {now}")
 
 # print(help(load_todos))
 while True:
