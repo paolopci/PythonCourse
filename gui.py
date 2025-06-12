@@ -3,12 +3,12 @@ import FreeSimpleGUI as sg
 
 layout = [
     [sg.Text("Enter a todo:")],
-    [sg.InputText(tooltip="Type your todo here"), sg.Button("Add")]
+    [sg.InputText(tooltip="Type your todo here", key="todo"), sg.Button("Add")]
 ]
-window = sg.Window("My To-Do App", layout=[layout])
+window = sg.Window("My To-Do App", layout=[layout], font=("Helvetica", 16))
 
-window.read()
+event = window.read()
 
-print('Ciao Paolo .....')
+print(event)
 
 window.close()
