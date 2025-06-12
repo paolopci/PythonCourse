@@ -7,8 +7,9 @@ layout = [
 ]
 window = sg.Window("My To-Do App", layout=[layout], font=("Helvetica", 16))
 
-event = window.read()
+event, values = window.read()
 
 print(event)
+print(values)
 
 window.close()
