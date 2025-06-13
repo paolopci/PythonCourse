@@ -9,15 +9,16 @@ add_button = sg.Button("Add")
 list_box = sg.Listbox(values=functions03.load_todos(file_path), key="todos", enable_events=True,
                       size=[45, 10])
 edit_button = sg.Button("Edit")
-
+complete_button = sg.Button("Complete")
 
 # -------------------------------------------------------------
-layout1 = []
-buttons_labels = ['Delete', 'Exit']
-for item in buttons_labels:
-    layout1.append(sg.Button(item))
+# layout1 = []
+# buttons_labels = ['Delete', 'Exit']
+# for item in buttons_labels:
+#     layout1.append(sg.Button(item))
 # -------------------------------------------------------------
-layout = [[label], [input_box, add_button], [list_box, edit_button], layout1]
+layout = [[label], [input_box, add_button], [
+    list_box, edit_button, complete_button]]
 # -------------------------------------------------------------
 # create the window
 window = sg.Window(
@@ -57,6 +58,16 @@ while True:
                     window['todo'].update(value="")  # Clear input box
                 except (ValueError, IndexError):
                     sg.popup("Please select a valid item to edit")
+        case "Complete":
+            # Get the first selected item
+            todo_to_complete = selected[0] if selected else None
+            if todo_to_complete:
+                todos = functions03.load_todos(file_path)
+                todos.remove(todo_to_complete)  # Remove the completed todo
+                functions03.save_todos(file_path, todos)
+                window['todos'].update(values=todos)  # Update listbox
+                window['todo'].update(value="")  # Clear input box
+
         case "todos":
             window["todo"].update(value=values['todos'][0])
         case sg.WIN_CLOSED:
