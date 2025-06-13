@@ -1,8 +1,20 @@
 from modules import functions03
 import FreeSimpleGUI as sg
+import time
+
+
+sg.theme('darkPurple4')  # Set the theme for the GUI
+
+
+# Display current date and time
+now = time.strftime('%d %b %Y %H:%M:%S', time.localtime())
+print(f"Oggi è: {now}")
+
 
 file_path = "dati/todos.txt"
 # Create window layout
+
+clock = sg.Text('', key='clock')
 label = sg.Text("Enter a todo: ")
 input_box = sg.InputText(tooltip="enter todo", key="todo")
 add_button = sg.Button("Add")
@@ -18,7 +30,7 @@ exit_button = sg.Button("Exit")
 # for item in buttons_labels:
 #     layout1.append(sg.Button(item))
 # -------------------------------------------------------------
-layout = [[label], [input_box, add_button], [
+layout = [[clock], [label], [input_box, add_button], [
     list_box, edit_button, complete_button], [exit_button]]
 # -------------------------------------------------------------
 # create the window
@@ -26,7 +38,8 @@ window = sg.Window(
     "My To-Do App", layout=layout, font=("Helvetica", 16))
 
 while True:
-    event, values = window.read()
+    event, values = window.read(timeout=200)
+    window['clock'].update(time.strftime('%d %b %Y %H:%M:%S'))  # Update clock
     print("Event:", event)  # Print event
     print("Values:", values)  # Print selected items
 
@@ -60,14 +73,17 @@ while True:
                 except (ValueError, IndexError):
                     sg.popup("Please select a valid item to edit")
         case "Complete":
-            # Get the first selected item
-            todo_to_complete = selected[0] if selected else None
-            if todo_to_complete:
-                todos = functions03.load_todos(file_path)
-                todos.remove(todo_to_complete)  # Remove the completed todo
-                functions03.save_todos(file_path, todos)
-                window['todos'].update(values=todos)  # Update listbox
-                window['todo'].update(value="")  # Clear input box
+            try:
+                # Get the first selected item
+                todo_to_complete = selected[0] if selected else None
+                if todo_to_complete:
+                    todos = functions03.load_todos(file_path)
+                    todos.remove(todo_to_complete)  # Remove the completed todo
+                    functions03.save_todos(file_path, todos)
+                    window['todos'].update(values=todos)  # Update listbox
+                    window['todo'].update(value="")  # Clear input box
+            except IndexError:
+                sg.popup("Please select a todo to complete")
         case "Exit":
             print("Exiting the application")
             break
