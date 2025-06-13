@@ -10,6 +10,7 @@ list_box = sg.Listbox(values=functions03.load_todos(file_path), key="todos", ena
                       size=[45, 10])
 edit_button = sg.Button("Edit")
 complete_button = sg.Button("Complete")
+exit_button = sg.Button("Exit")
 
 # -------------------------------------------------------------
 # layout1 = []
@@ -18,7 +19,7 @@ complete_button = sg.Button("Complete")
 #     layout1.append(sg.Button(item))
 # -------------------------------------------------------------
 layout = [[label], [input_box, add_button], [
-    list_box, edit_button, complete_button]]
+    list_box, edit_button, complete_button], [exit_button]]
 # -------------------------------------------------------------
 # create the window
 window = sg.Window(
@@ -67,7 +68,9 @@ while True:
                 functions03.save_todos(file_path, todos)
                 window['todos'].update(values=todos)  # Update listbox
                 window['todo'].update(value="")  # Clear input box
-
+        case "Exit":
+            print("Exiting the application")
+            break
         case "todos":
             window["todo"].update(value=values['todos'][0])
         case sg.WIN_CLOSED:
