@@ -10,8 +10,10 @@ list_box = sg.Listbox(values=functions03.load_todos(file_path), key="todos", ena
                       size=[45, 10])
 edit_button = sg.Button("Edit")
 
+layout = [[label], [input_box, add_button], [list_box, edit_button]]
+
 window = sg.Window(
-    "My To-Do App", layout=[[label], [input_box, add_button], [list_box, edit_button]], font=("Helvetica", 16))
+    "My To-Do App", layout=layout, font=("Helvetica", 16))
 
 while True:
     event, values = window.read()
