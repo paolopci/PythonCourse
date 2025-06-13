@@ -1,4 +1,5 @@
 import FreeSimpleGUI as sg
+from zip_creator import make_archive  # ho solo questa funzione
 
 
 label1 = sg.Text('Select files to compress:')
