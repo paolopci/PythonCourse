@@ -21,7 +21,9 @@ while True:
             new_todo = values['todo']
             todos.append(new_todo)  # Add new todo to the list
             functions03.save_todos(file_path, todos)
-    # if event == sg.WIN_CLOSED or event == "Exit":
-    #     break
+        case  sg.WIN_CLOSED:  # Handle window close event
+            print("Window closed")
+            break
+
 
 window.close()
