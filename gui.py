@@ -10,8 +10,16 @@ list_box = sg.Listbox(values=functions03.load_todos(file_path), key="todos", ena
                       size=[45, 10])
 edit_button = sg.Button("Edit")
 
-layout = [[label], [input_box, add_button], [list_box, edit_button]]
 
+# -------------------------------------------------------------
+layout1 = []
+buttons_labels = ['Delete', 'Exit']
+for item in buttons_labels:
+    layout1.append(sg.Button(item))
+# -------------------------------------------------------------
+layout = [[label], [input_box, add_button], [list_box, edit_button], layout1]
+# -------------------------------------------------------------
+# create the window
 window = sg.Window(
     "My To-Do App", layout=layout, font=("Helvetica", 16))
 
