@@ -6,7 +6,8 @@ def make_archive(filepaths, destination_folder):
     dest_path = pathlib.Path(destination_folder, 'compressed.zip')
     with zipfile.ZipFile(dest_path, "w") as zipf:
         for filepath in filepaths:
-            zipf.write(filepath)
+            filepath = pathlib.Path(filepath)
+            zipf.write(filepath, arcname=filepath.name)
 
 
 # Example usage
