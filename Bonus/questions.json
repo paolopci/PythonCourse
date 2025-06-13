@@ -1,0 +1,22 @@
+[
+    {
+        "question": "Qual è la capitale della Francia?",
+        "alternatives": [
+            "Roma",
+            "Parigi",
+            "Londra",
+            "Mosca"
+        ],
+        "correct_answer": 2
+    },
+    {
+        "question": "Qual è la capitale dell' Italia?",
+        "alternatives": [
+            "Roma",
+            "Parigi",
+            "Londra",
+            "Mosca"
+        ],
+        "correct_answer": 1
+    }
+]
