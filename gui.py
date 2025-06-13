@@ -3,12 +3,12 @@ import FreeSimpleGUI as sg
 import time
 
 
-sg.theme('darkPurple4')  # Set the theme for the GUI
+sg.theme('Black')  # Set the theme for the GUI
 
 
 # Display current date and time
-now = time.strftime('%d %b %Y %H:%M:%S', time.localtime())
-print(f"Oggi è: {now}")
+# now = time.strftime('%d %b %Y %H:%M:%S', time.localtime())
+# print(f"Oggi è: {now}")
 
 
 file_path = "dati/todos.txt"
@@ -17,7 +17,8 @@ file_path = "dati/todos.txt"
 clock = sg.Text('', key='clock')
 label = sg.Text("Enter a todo: ")
 input_box = sg.InputText(tooltip="enter todo", key="todo")
-add_button = sg.Button("Add")
+add_button = sg.Button(size=2, image_source="add.png", mouseover_colors=(
+    'lightblue', 'white'), tooltip="Add todo", key="Add")
 list_box = sg.Listbox(values=functions03.load_todos(file_path), key="todos", enable_events=True,
                       size=[45, 10])
 edit_button = sg.Button("Edit")
