@@ -17,8 +17,8 @@ file_path = "dati/todos.txt"
 clock = sg.Text('', key='clock')
 label = sg.Text("Enter a todo: ")
 input_box = sg.InputText(tooltip="enter todo", key="todo")
-add_button = sg.Button(size=2, image_source="add.png", mouseover_colors=(
-    'lightblue', 'white'), tooltip="Add todo", key="Add")
+add_button = sg.Button(size=2, image_source="add.png", mouseover_colors='LightBlue2',
+                       tooltip="Add todo", key="Add")
 list_box = sg.Listbox(values=functions03.load_todos(file_path), key="todos", enable_events=True,
                       size=[45, 10])
 edit_button = sg.Button("Edit")
