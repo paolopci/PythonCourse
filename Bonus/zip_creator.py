@@ -11,6 +11,6 @@ def make_archive(filepaths, destination_folder):
 
 
 # Example usage
-# if __name__ == "__main__":
-#     make_archive(filepaths=['bonus5.py',
-#                  'Bonus4.py'], destination_folder='dest')
+if __name__ == "__main__":
+    make_archive(filepaths=['bonus5.py',
+                 'Bonus4.py'], destination_folder='dest')
