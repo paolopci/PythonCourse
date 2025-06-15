@@ -1,4 +1,6 @@
 import FreeSimpleGUI as sg
+# Importa la funzione di estrazione dal file zip_extractor.py
+from zip_extractor import extract_zip
 
 
 # Crea gli elementi della prima riga (selezione file)
@@ -24,5 +26,17 @@ window = sg.Window('Files Compressor', layout=[
                    [extract_btn, output_label]                  # Terza riga
                    ])
 
-event, values = window.read()
+while True:
+    event, values = window.read()
+    print(event, values)  # Stampa l'evento e i valori per il debug
+    archivepath = values['archive']  # Percorso dell'archivio selezionato
+    dest_path = values['folder']  # Percorso della cartella di destinazione
+    print(archivepath)
+    print(dest_path)
+
+    extract_zip(archivepath, dest_path)  # Chiama la funzione di estrazione
+    # Aggiorna l'etichetta di output
+    window['output'].update('Extraction complete!')
+
+
 window.close()  # Chiude la finestra quando il loop termina

@@ -19,4 +19,4 @@ def extract_zip(zip_path, dest_dir):
 
 
 # if __name__ == "__main__":
-#     extract_zip('./dest/compressed.zip', './aaa')
+#     extract_zip('dest/compressed.zip', '/aaa')
