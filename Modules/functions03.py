@@ -1,22 +1,46 @@
+import os
 
 
 def load_todos(file_path):
-    """ Load todos from a file, returning a list of todos. """
+    """Carica i todos dal file, restituisce lista vuota se il file non esiste"""
     try:
-        with open(file_path, "r") as file:
-            return [line.strip() for line in file if line.strip()]
-    except FileNotFoundError:
+        # Assicurati che la directory esista
+        directory = os.path.dirname(file_path)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # Se il file non esiste, crealo vuoto
+        if not os.path.exists(file_path):
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write("")
+            return []
+
+        # Leggi il file
+        with open(file_path, 'r', encoding='utf-8') as f:
+            todos = f.readlines()
+
+        # Rimuovi i caratteri di nuova riga e spazi extra
+        todos = [todo.strip() for todo in todos if todo.strip()]
+        return todos
+
+    except Exception as e:
+        print(f"Errore nel caricamento dei todos: {e}")
         return []
 
 
 def save_todos(file_path, todos):
-    """ Save todos to a file. """
-    with open(file_path, "w") as file:
-        file.write("\n".join(todos) + "\n")
+    """Salva i todos nel file"""
+    try:
+        # Assicurati che la directory esista
+        directory = os.path.dirname(file_path)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
 
+        # Salva i todos
+        with open(file_path, 'w', encoding='utf-8') as f:
+            for todo in todos:
+                f.write(todo + '\n')
 
-print(__name__)
-
-if __name__ == "__main__":
-    print('Hello from functions03.py!')
-    print(load_todos())
+    except Exception as e:
+        print(f"Errore nel salvataggio dei todos: {e}")
+        raise  # Rilancia l'eccezione per farla gestire dal GUI
